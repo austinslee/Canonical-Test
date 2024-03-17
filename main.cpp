@@ -3,6 +3,9 @@
 
 
 int main() {
+
+
+	//Command Line Interface
 	SimpleStreamsFormatFetcher test;
 	std::string option;
 	std::cout << "Welcome to SimpleStreamsFormatFetcher CLI\n" << "The following commands are:\n";

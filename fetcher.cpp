@@ -56,10 +56,6 @@ std::string SimpleStreamsFormatFetcher::returnCurrLTS() {
 		}
 		nlohmann::json jsonData = nlohmann::json::parse(responseBuffer);
 		nlohmann::json jsonProductArray = jsonData["products"];
-
-/* (str.find(substring) != std::string::npos) {
-	std::cout << "String contains the substring \"" << substring << "\"" << std::endl;
-}*/
 		for (const auto& product : jsonProductArray) {
 			//checks if arch == amd64, version number is the latest, and contains LTS in release title
 			if (product["arch"].get<std::string>() == "amd64") {
@@ -80,14 +76,14 @@ std::string SimpleStreamsFormatFetcher::returnCurrLTS() {
 
 //given release_title, return the sha256 of the disk1.img
 //Some of the Ubuntu releases don't have disk1.img. For example, Ubuntu 10.10
-//Some of the Ubuntu releases have multiple disk1.img. For example Ubuntu 23.10
+//Some of the Ubuntu releases have multiple disk1.img. For example Ubuntu 23.10. In these cases, the highest version will be used.
 std::string SimpleStreamsFormatFetcher::returnDisk1Sha256(std::string release) {
 	//std::string toReturn = "Ubuntu release_title not found";
 	std::string toReturn = "";
 	CURL *curl = curl_easy_init();
 	CURLcode res;
 	std::string responseBuffer;
-	if(curl) {
+	if(curl) { 
 		curl_easy_setopt(curl, CURLOPT_URL, "https://cloud-images.ubuntu.com/releases/streams/v1/com.ubuntu.cloud:released:download.json");
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writecb);
 		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &responseBuffer);
@@ -98,6 +94,7 @@ std::string SimpleStreamsFormatFetcher::returnDisk1Sha256(std::string release) {
 		nlohmann::json jsonData = nlohmann::json::parse(responseBuffer);
                 nlohmann::json jsonProductArray = jsonData["products"];
        	        for (const auto& product : jsonProductArray) {
+			//checks that architecture is amd64
                	        if (product["release_title"].get<std::string>() == release && product["arch"].get<std::string>() == "amd64") {
 				for(const auto& key : product["versions"])  {
 					if(key["items"].contains("disk1.img")) {

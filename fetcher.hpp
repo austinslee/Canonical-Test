@@ -14,8 +14,6 @@ class Fetcher {
         virtual std::vector<std::string> returnSupportedReleases() = 0;
         virtual std::string returnCurrLTS() = 0;
         virtual std::string returnDisk1Sha256(std::string) = 0;
-
-
 };
 //Derived Class
 class SimpleStreamsFormatFetcher : public Fetcher {
@@ -23,7 +21,6 @@ class SimpleStreamsFormatFetcher : public Fetcher {
         std::vector<std::string> returnSupportedReleases()  override;
         std::string returnCurrLTS() override;
         std::string returnDisk1Sha256(std::string) override;
-
 };
 
 
