@@ -10,6 +10,8 @@ Dependencies:
 
 Instructions to install dependencies:
 
+	'''bash
+ 
 	sudo apt-get install libcurl4-openssl-dev 
 
 	sudo apt install nlohmann-json3-dev
