@@ -78,8 +78,7 @@ std::string SimpleStreamsFormatFetcher::returnCurrLTS() {
 //Some of the Ubuntu releases don't have disk1.img. For example, Ubuntu 10.10
 //Some of the Ubuntu releases have multiple disk1.img. For example Ubuntu 23.10. In these cases, the highest version will be used.
 std::string SimpleStreamsFormatFetcher::returnDisk1Sha256(std::string release) {
-	//std::string toReturn = "Ubuntu release_title not found";
-	std::string toReturn = "";
+	std::string toReturn = "Ubuntu release_title not found";
 	CURL *curl = curl_easy_init();
 	CURLcode res;
 	std::string responseBuffer;
