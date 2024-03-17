@@ -1,4 +1,6 @@
 # Technical Test, Canonical
+Github: https://github.com/austinslee/Canonical-Test.git
+
 (Linux OS)
 
 Dependencies:
