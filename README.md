@@ -6,8 +6,13 @@ Dependencies:
 	nlohmann-json
 
 
-Instructions to install:
+Instructions to install dependencies:
 sudo apt-get install libcurl4-openssl-dev
 sudo apt install nlohmann-json3-dev
+
+
+Instructions to run program:
+g++ -std=c++17 main.cpp fetcher.cpp -lcurl
+
 
 

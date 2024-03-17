@@ -4,24 +4,27 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <curl/curl.h>
+#include <nlohmann/json.hpp>
+
 
 //Base Class
 class Fetcher {
     public:
-        virtual std::vector<std::string> returnSupportedReleases() const = 0;
-        virtual std::string returnCurrLTS() const = 0;
-        virtual std::string returnDisk1Sha256(std::string) const = 0;
-        virtual ~Fetcher() = 0;
+        virtual std::vector<std::string> returnSupportedReleases() = 0;
+        virtual std::string returnCurrLTS() = 0;
+        virtual std::string returnDisk1Sha256(std::string) = 0;
+
 
 };
 //Derived Class
-class SimpleStreamsFormatFetecher : public Fetcher {
+class SimpleStreamsFormatFetcher : public Fetcher {
     public:
-        std::vector<std::string> returnSupportedReleases()  const override;
-        std::string returnCurrLTS() const override;
-        std::string returnDisk1Sha256(std::string) const override;
-        void CLI();
-}
+        std::vector<std::string> returnSupportedReleases()  override;
+        std::string returnCurrLTS() override;
+        std::string returnDisk1Sha256(std::string) override;
+
+};
 
 
 #endif //__FETCHER_HPP__
